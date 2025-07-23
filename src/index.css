@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Enhanced Code Review App Palette with Gradients */
+    --background: 0 0% 98%;
+    --background-gradient: linear-gradient(135deg, hsl(213 90% 97%) 0%, hsl(220 8% 96%) 100%);
+    --foreground: 220 15% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 25%;
+    --card-glow: 0 8px 32px hsl(213 90% 60% / 0.1);
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 25%;
+
+    --primary: 213 90% 60%;
+    --primary-glow: 213 90% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 8% 95%;
+    --secondary-foreground: 220 15% 25%;
+
+    --muted: 220 8% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 213 90% 95%;
+    --accent-foreground: 213 90% 30%;
+    --accent-glow: 213 90% 85%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 8% 88%;
+    --input: 220 8% 88%;
+    --ring: 213 90% 60%;
+    
+    /* Animation colors */
+    --particle-1: 213 90% 70%;
+    --particle-2: 260 85% 75%;
+    --particle-3: 180 80% 70%;
+    --gradient-primary: linear-gradient(135deg, hsl(213 90% 60%), hsl(260 85% 65%));
+    --gradient-secondary: linear-gradient(45deg, hsl(180 80% 70%), hsl(213 90% 70%));
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Enhanced Dark Mode */
+    --background: 220 20% 8%;
+    --background-gradient: linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(230 25% 12%) 100%);
+    --foreground: 220 8% 92%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 220 8% 92%;
+    --card-glow: 0 8px 32px hsl(213 90% 60% / 0.2);
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 220 8% 92%;
+
+    --primary: 213 90% 60%;
+    --primary-glow: 213 90% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 8% 92%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 8% 65%;
+
+    --accent: 213 90% 20%;
+    --accent-foreground: 213 90% 80%;
+    --accent-glow: 213 90% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 213 90% 60%;
+    
+    /* Dark mode animation colors */
+    --particle-1: 213 90% 50%;
+    --particle-2: 260 85% 55%;
+    --particle-3: 180 80% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(213 90% 40%), hsl(260 85% 45%));
+    --gradient-secondary: linear-gradient(45deg, hsl(180 80% 40%), hsl(213 90% 50%));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: var(--background-gradient);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Custom animations for code review app */
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  /* Animated background particles */
+  .animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.1;
+  }
+
+  .particle:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    background: hsl(var(--particle-1));
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+  }
+
+  .particle:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    background: hsl(var(--particle-2));
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 6s;
+  }
+
+  .particle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    background: hsl(var(--particle-3));
+    left: 70%;
+    animation-delay: 4s;
+    animation-duration: 10s;
+  }
+
+  .particle:nth-child(4) {
+    width: 40px;
+    height: 40px;
+    background: hsl(var(--particle-1));
+    left: 80%;
+    animation-delay: 1s;
+    animation-duration: 7s;
+  }
+
+  .particle:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    background: hsl(var(--particle-2));
+    left: 50%;
+    animation-delay: 3s;
+    animation-duration: 9s;
+  }
+
+  /* Floating geometric shapes */
+  .geometric-shape {
+    position: absolute;
+    opacity: 0.05;
+    animation: rotate 20s linear infinite;
+  }
+
+  .geometric-shape:nth-child(6) {
+    width: 120px;
+    height: 120px;
+    background: var(--gradient-primary);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    left: 15%;
+    top: 20%;
+    animation-delay: 0s;
+  }
+
+  .geometric-shape:nth-child(7) {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-secondary);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    right: 20%;
+    top: 30%;
+    animation-delay: 5s;
+  }
+
+  .geometric-shape:nth-child(8) {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    left: 80%;
+    bottom: 20%;
+    animation-delay: 10s;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glow effects */
+.glow-card {
+  box-shadow: var(--card-glow);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-card:hover {
+  box-shadow: 0 12px 48px hsl(var(--primary) / 0.15);
+}
+
+/* Enhanced gradients */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
